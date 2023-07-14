@@ -1,0 +1,30 @@
+﻿@model Guid
+<div class="row col-md-12">
+    <form id="AddComment">
+        @*<div class="form-group comment-container">
+            <input type="hidden" id="MovieId" name="MovieId" value="@Model"/>
+            <input class="form-control" id="commentBox" placeholder="Add Comments ...." name="Text"/>
+            <span id="commentValidation" class="text-danger"></span>
+            <button type="submit" class="btn btn-success" id="submitButton">Comment</button>
+        </div>*@
+        <div class="container mt-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div class="d-flex flex-column comment-section">
+                        <div class="bg-light p-2">
+                            <div class="d-flex flex-row align-items-start">
+                                <input type="hidden" id="MovieId" name="MovieId" value="@Model" />
+                                <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                <textarea class="form-control ml-1 shadow-none textarea" id="commentBox" placeholder="Add Comments ...." name="Text"></textarea>
+                            </div>
+                            <span id="commentValidation" class="text-danger"></span>
+                            <div class="mt-2 text-right">
+                                <button class="btn btn-primary btn-sm shadow-none" type="submit" id="submitButton">Post comment</button>
+                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </form>
+</div>
