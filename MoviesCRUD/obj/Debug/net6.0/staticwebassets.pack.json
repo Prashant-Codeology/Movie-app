@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\MoviesCRUD.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000Batman.png",
+      "PackagePath": "staticwebassets\\Content\\Image\\00000000-0000-0000-0000-000000000000Batman.png"
+    },
+    {
+      "Id": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000download.jpg",
+      "PackagePath": "staticwebassets\\Content\\Image\\00000000-0000-0000-0000-000000000000download.jpg"
+    },
+    {
       "Id": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\Batman.png",
       "PackagePath": "staticwebassets\\Content\\Image\\Batman.png"
     },

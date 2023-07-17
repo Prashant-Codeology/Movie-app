@@ -23,6 +23,15 @@ namespace MoviesCRUD.Repository.Implementation
            // throw new NotImplementedException();
         }
 
+        public async Task<decimal> GetRatingValue(Guid MovieId, string UserId)
+        {
+            decimal value = await _context.Rating
+                .Where(r => r.MovieId == MovieId && r.UserId == UserId)
+                .Select(r => r.Value)
+                .FirstOrDefaultAsync();
+
+            return value;
+        }
         public async Task<bool> HasRated(Guid MovieId, string UserId)
         {
             bool exists = await _context.Rating.AnyAsync(r => r.MovieId == MovieId && r.UserId == UserId);

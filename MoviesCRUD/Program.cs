@@ -22,6 +22,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IRole, Role>();
 builder.Services.AddScoped<ICommentRepository,CommentRepository >();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+
 
 var app = builder.Build();
 

@@ -12,12 +12,10 @@
     <h4>Movie</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-           Image
-        </dt>
-        <dd class="col-sm-10">
+        <div class="d-flex justify-content-center row">
+        <dd class="col-sm-12">
             @*@Html.DisplayFor(model => model.ImagePath)*@
-            <img src="~/@Model.Movie.ImagePath" alt="Movie Image" class="img-fluid" width="100px" height="100px" />
+            <img src="~/@Model.Movie.ImagePath" alt="Movie Image" class="img-fluid" width="200px" height="200px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Movie.MovieName)
@@ -37,6 +35,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Movie.MovieGenre)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.AverageRating)
+        </dt>
+        <dd name="refresh" class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movie.AverageRating)
+        </dd>
     </dl>
 </div>
 
@@ -45,17 +49,22 @@
     <a asp-action="UpdateImage" asp-route-id="@Model?.Movie.MovieId">Change Image</a> |
     <a asp-action="Index">Back to List</a>
 </div>
-
+<div name="refresh">
 @if (User.Identity.IsAuthenticated)
 {
     @if (!ViewBag.HasRated)
     {
         <partial name="../Rating/_AddRating" model="@Model.Movie.MovieId" />
     }
+    @if (ViewBag.HasRated)
+    {
+        <h4>You have rated: @ViewBag.UserRating</h4>
+    }
 }
+</div>
 <hr />
-
 <h2>Comment Section</h2>
+
 @if (User.Identity.IsAuthenticated)
 {
     <partial name="../Comment/_AddComment" model="@Model.Movie.MovieId" />
@@ -65,6 +74,7 @@ else
 {
     <h4 class="text-info">Login In to comment!</h4>
 }
+
 <div id="commentList">
     <partial name="../Comment/_ViewComment" model="@Model.Comments" />
 </div>
@@ -80,7 +90,7 @@ else
                     type: 'POST',
                     data: { MovieId: movieId, Text: text },
                     success: function (result) {
-                       // $('#discussionList').html(result);
+                       $('#commentList').html(result);
                        console.log(result);
                     },
                     error: function (xhr, status, error) {
@@ -101,6 +111,39 @@ else
             });
         });
      
+        $(document).ready(function () {
+            $('input[type="radio"]').click(function () {
+                $('#submitRating').show();
+            });
+        });
+        $(document).ready(function () {
+            $('#ratingSubmit').click(function (event) {
+                event.preventDefault();
 
-        </script>
+                var rating = $('input[name="rating"]:checked').val();
+                $('#ratingValue').text(rating);
+                var movieId = $('input[name="MovieId"]').val();
+                var data = {
+                    Value: rating,
+                    MovieId: movieId
+                };
+                $.ajax({
+                    url: '@Url.Action("AddRating", "Rating")',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        // Handle the success response
+                        $('#RatingForm').hide();
+                        location.reload();
+                        //$('[name="refresh"]').load(location.href + '[name="refresh"]');
+                        
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error response
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
     }

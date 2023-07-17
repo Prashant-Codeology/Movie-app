@@ -11,10 +11,12 @@
     </div>
 }
 
+
+
 <p>
     <a class="btn btn-info" asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table id="moviesTable" class="table">
     <thead>
         <tr>
             <th>
@@ -57,3 +59,9 @@
 }
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('#moviesTable').DataTable();
+    });
+</script>

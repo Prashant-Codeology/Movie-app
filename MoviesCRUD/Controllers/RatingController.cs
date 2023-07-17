@@ -36,6 +36,8 @@ namespace MoviesCRUD.Controllers
             await CalculateAverageRating(count, rt.Value, rt.MovieId);
             var averagerating = await _movieRepository.GetAverageRating(rt.MovieId);
             return Content(averagerating.ToString());
+           // return PartialView("_AddRating", averagerating.ToString());
+
         }
 
         public async Task CalculateAverageRating(int count, int rate, Guid MovieId)

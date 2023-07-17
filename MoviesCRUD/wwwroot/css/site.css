@@ -16,3 +16,34 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*For Star Rating*/
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
+}
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        color: #ccc;
+    }
+
+        .rating label:before {
+            content: "\2605";
+            font-size:40px;
+        }
+
+    .rating input:checked ~ label {
+        color: #ffc107;
+    }
+
+
+

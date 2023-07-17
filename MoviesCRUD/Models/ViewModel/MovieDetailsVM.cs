@@ -4,5 +4,6 @@
     {
         public Movie? Movie { get; set; }
         public CommentsVM? Comments { get; set; }
+        public RatingVM? Rating { get; set;}
     }
 }

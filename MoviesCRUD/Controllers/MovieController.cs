@@ -148,12 +148,16 @@ namespace MoviesCRUD.Controllers
             MovieDetailsVM details = new()
             {
                 Movie = movie,
-                Comments = commentsVM
+                Comments = commentsVM 
             };
             if (User.Identity.IsAuthenticated)
             {
                 var userid = _userManager.GetUserId(User) ?? throw new ArgumentNullException(nameof(User));
                 ViewBag.HasRated = await _ratingRepository.HasRated(movie.MovieId, userid);
+                if (ViewBag.HasRated)
+                {
+                    ViewBag.UserRating = await _ratingRepository.GetRatingValue(movie.MovieId, userid);
+                }
             }
 
             if (details != null)

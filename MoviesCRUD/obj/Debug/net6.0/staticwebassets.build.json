@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+GxSTkMzUkZtVxc9Cpk5fgeVVLwoU59UkvgxHX0kzoE=",
+  "Hash": "JlwHx32gZW3zU9NuO1vu1/7hL7b2c7gy0ZR8cZ+U/Gw=",
   "Source": "MoviesCRUD",
   "BasePath": "_content/MoviesCRUD",
   "Mode": "Default",
@@ -1069,6 +1069,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\MoviesCRUD.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000Batman.png",
+      "SourceId": "MoviesCRUD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\",
+      "BasePath": "_content/MoviesCRUD",
+      "RelativePath": "Content/Image/00000000-0000-0000-0000-000000000000Batman.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000Batman.png"
+    },
+    {
+      "Identity": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000download.jpg",
+      "SourceId": "MoviesCRUD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\",
+      "BasePath": "_content/MoviesCRUD",
+      "RelativePath": "Content/Image/00000000-0000-0000-0000-000000000000download.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Content\\Image\\00000000-0000-0000-0000-000000000000download.jpg"
     },
     {
       "Identity": "C:\\Users\\prash\\OneDrive\\Desktop\\Projects\\MoviesCRUD\\MoviesCRUD\\wwwroot\\Content\\Image\\Batman.png",
