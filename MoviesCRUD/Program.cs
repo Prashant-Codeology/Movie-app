@@ -4,6 +4,8 @@ using MoviesCRUD.Repository.Implementation;
 using MoviesCRUD.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using MoviesCRUD.Seed;
+using MoviesCRUD.Repository.SPImplementation;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +21,19 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<MovieDbContext>();
 
 //Dependency Injections
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+if (builder.Configuration.GetValue<bool>("UseSP")) //To either use EF or SP 
+{
+    builder.Services.AddScoped<IMovieRepository, SPMovieRepository>();
+}
+else
+{
+    builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
+}
 builder.Services.AddScoped<IRole, Role>();
 builder.Services.AddScoped<ICommentRepository,CommentRepository >();
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+//builder.Services.AddSingleton<IRatingRepository, RatingRepository>();
 
 
 var app = builder.Build();

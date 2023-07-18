@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-@if(TempData["SuccessMessages"]!=null)
+@if (TempData["SuccessMessages"] != null)
 {
     <div class="alert alert-success">
         @TempData["SuccessMessages"]
@@ -35,33 +35,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieGenre)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-                <img src="@item.ImagePath" height="100px" width="100px">
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.MovieId">Edit</a>
-                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.MovieId">Details</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieGenre)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+                    <img src="@item.ImagePath" height="100px" width="100px">
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.MovieId">Edit</a>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.MovieId">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 <script>
     $(document).ready(function () {
-        $('#moviesTable').DataTable();
+        $('#moviesTable').DataTable({
+            "pageLength": 5
+        });
     });
 </script>

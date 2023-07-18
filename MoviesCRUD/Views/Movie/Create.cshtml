@@ -22,9 +22,22 @@
                 <input class="form-control" name="MovieDescription" />
                 <span class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @* <div class="form-group">
                 <label asp-for="MovieGenre" class="control-label"></label>
                 <input asp-for="MovieGenre" class="form-control" />
+                <span asp-validation-for="MovieGenre" class="text-danger"></span>
+            </div>*@
+            @{
+                List<string> genreList = new List<string> { "Action", "Horror", "Romance", "Comedy", "Drama", "Adventure", "Sci-Fi" };
+            }
+            <div class="form-group">
+                <label asp-for="MovieGenre" class="control-label"></label>
+                <select asp-for="MovieGenre" class="form-control">
+                    @foreach (var genre in genreList)
+                    {
+                        <option value="@genre">@genre</option>
+                    }
+                </select>
                 <span asp-validation-for="MovieGenre" class="text-danger"></span>
             </div>
             <div class="form-group">
