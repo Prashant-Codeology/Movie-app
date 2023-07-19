@@ -48,10 +48,10 @@ namespace MoviesCRUD.Controllers
             return PartialView("_ViewComment", cmts);
         }
         [HttpPost]
-        public async Task<IActionResult> DeleteDiscussion(Guid MovieId, Guid CommentId)
+        public async Task<IActionResult> DeleteComment(Guid MovieId, Guid CommentId)
         {
             await _commentRepository.DeleteComment(CommentId);
-            return RedirectToAction("ViewDiscussion", new { MovieId = MovieId });
+            return RedirectToAction("ViewComment", new { MovieId = MovieId });
         }
     }
 }

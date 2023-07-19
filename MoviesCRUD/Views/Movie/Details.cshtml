@@ -145,5 +145,22 @@ else
                 });
             });
         });
+
+        function DeleteComment() {
+            var MovieId = $('#MovieId').val();
+            var CommentId = $('#CommentId').val();
+            $.ajax({
+                url: '@Url.Action("DeleteComment", "Comment")',
+                type: 'POST',
+                data: { MovieId: MovieId, CommentId: CommentId },
+                success: function (result) {
+                    $('commentBox').text('');
+                    $('#commentList').html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
     </script>
     }

@@ -57,7 +57,7 @@ namespace MoviesCRUD.Controllers
                     UploadFile(movie.ImagePath, fullPath);
                     var newmovie = new Movie()
                     {
-                        MovieId = movie.MovieId,
+                        MovieId = Guid.NewGuid(),
                         MovieName = movie.MovieName,
                         MovieDescription = movie.MovieDescription,
                         MovieGenre = movie.MovieGenre,

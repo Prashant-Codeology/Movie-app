@@ -24,14 +24,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 if (builder.Configuration.GetValue<bool>("UseSP")) //To either use EF or SP 
 {
     builder.Services.AddScoped<IMovieRepository, SPMovieRepository>();
+    builder.Services.AddScoped<ICommentRepository, SPCommentRepository>();
 }
 else
 {
     builder.Services.AddScoped<IMovieRepository, MovieRepository>();
-
+    builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 }
 builder.Services.AddScoped<IRole, Role>();
-builder.Services.AddScoped<ICommentRepository,CommentRepository >();
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 //builder.Services.AddSingleton<IRatingRepository, RatingRepository>();
 
