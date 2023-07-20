@@ -62,14 +62,16 @@
                                     <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
                                     <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
                                     <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                    @if (User.Identity.Name == comment.UserName)
+                                    {
+                                        <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1 text-danger" onclick="DeleteComment()">Delete</span></div>
+                                       @* <div>
+                                            <button class="btn btn-danger" onclick="DeleteComment()">Delete</button>
+                                        </div>*@
+                                    }
                                 </div>
                             </div>
-                            @if (User.Identity.Name == comment.UserName)
-                            {
-                                <div>
-                                    <button class="btn btn-danger" onclick="DeleteComment()">Delete</button>
-                                </div>
-                            }
+                           
 
                         </div>
                     </div>

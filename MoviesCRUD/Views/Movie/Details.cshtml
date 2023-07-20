@@ -7,76 +7,64 @@
     ViewData["Title"] = "Details";
 }
 
+<div class="container mt-5">
+    <h1 class="text-center">Movie Details</h1>
+    <div class="row mt-4">
+        <div class="col-md-4 text-center">
+            <img src="~/@Model.Movie.ImagePath" alt="Movie Image" class="img-fluid rounded" width="200" height="200" />
+            <p class="mt-2"><strong>Average Rating:</strong> @Model.Movie.AverageRating</p>
+            <div name="refresh">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (!ViewBag.HasRated)
+                    {
+                        <partial name="../Rating/_AddRating" model="@Model.Movie.MovieId" />
+                    }
+                    if (ViewBag.HasRated)
+                    {
+                        <h4 class="text-success">You have rated: @ViewBag.UserRating</h4>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-4">Movie Name:</dt>
+                <dd class="col-sm-8">@Model.Movie.MovieName</dd>
 
-<div>
-    <h4>Movie</h4>
+                <dt class="col-sm-4">Description:</dt>
+                <dd class="col-sm-8">@Model.Movie.MovieDescription</dd>
+
+                <dt class="col-sm-4">Genre:</dt>
+                <dd class="col-sm-8">@Model.Movie.MovieGenre</dd>
+            </dl>
+            <div class="text-center">
+                <a asp-action="Update" asp-route-id="@Model?.Movie.MovieId" class="btn btn-primary mr-2">Edit</a>
+                <a asp-action="UpdateImage" asp-route-id="@Model?.Movie.MovieId" class="btn btn-secondary mr-2">Change Image</a>
+                <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
+            </div>
+        </div>
+    </div>
+
     <hr />
-    <dl class="row">
-        <div class="d-flex justify-content-center row">
-        <dd class="col-sm-12">
-            @*@Html.DisplayFor(model => model.ImagePath)*@
-            <img src="~/@Model.Movie.ImagePath" alt="Movie Image" class="img-fluid" width="200px" height="200px" />
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.MovieName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movie.MovieName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.MovieDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movie.MovieDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.MovieGenre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movie.MovieGenre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.AverageRating)
-        </dt>
-        <dd name="refresh" class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movie.AverageRating)
-        </dd>
-    </dl>
-</div>
+    <center>
+        <h2 class="mt-4 mb-3">Comment Section</h2>
+    </center>
 
-<div>
-    <a asp-action="Update" asp-route-id="@Model?.Movie.MovieId">Edit</a> |
-    <a asp-action="UpdateImage" asp-route-id="@Model?.Movie.MovieId">Change Image</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-<div name="refresh">
-@if (User.Identity.IsAuthenticated)
-{
-    @if (!ViewBag.HasRated)
+    @if (User.Identity.IsAuthenticated)
     {
-        <partial name="../Rating/_AddRating" model="@Model.Movie.MovieId" />
+        <partial name="../Comment/_AddComment" model="@Model.Movie.MovieId" />
     }
-    @if (ViewBag.HasRated)
+    else
     {
-        <h4>You have rated: @ViewBag.UserRating</h4>
+        <center>
+            <h4 class="text-info">Login to comment!</h4>
+        </center>
     }
-}
-</div>
-<hr />
-<h2>Comment Section</h2>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <partial name="../Comment/_AddComment" model="@Model.Movie.MovieId" />
-
-}
-else
-{
-    <h4 class="text-info">Login In to comment!</h4>
-}
-
-<div id="commentList">
-    <partial name="../Comment/_ViewComment" model="@Model.Comments" />
+    <div id="commentList">
+        <partial name="../Comment/_ViewComment" model="@Model.Comments" />
+    </div>
 </div>
 @section Scripts{
     <script>

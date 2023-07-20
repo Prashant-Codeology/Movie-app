@@ -19,6 +19,7 @@ namespace MoviesCRUD.Controllers
         private readonly IRatingRepository _ratingRepository;
         private readonly IHostingEnvironment _environment;
         private readonly ICommentRepository _commentRepository;
+        private const int PageSize = 3; // Number of movies to display per page
 
 
         public MovieController(IMovieRepository movieRepository, IHostingEnvironment environment,
@@ -32,9 +33,19 @@ namespace MoviesCRUD.Controllers
             _ratingRepository = ratingRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var movies = await _movieRepository.GetAllMovies();
+            var allMovies = await _movieRepository.GetAllMovies();
+            var totalMovies = allMovies.Count();
+
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalMovies / (double)PageSize);
+
+            var movies = allMovies
+                .Skip((pageNumber - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+
             return View(movies);
         }
         [Authorize(Roles = "Admin")]

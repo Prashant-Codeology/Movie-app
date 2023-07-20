@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int pageNumber = ViewBag.PageNumber ?? 1;
 }
 
 @if (TempData["SuccessMessages"] != null)
@@ -11,60 +12,48 @@
     </div>
 }
 
-
-
 <p>
     <a class="btn btn-info" asp-action="Create">Create New</a>
 </p>
-<table id="moviesTable" class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieGenre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MovieName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MovieDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MovieGenre)
-                </td>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-                    <img src="@item.ImagePath" height="100px" width="100px">
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.MovieId">Edit</a>
-                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.MovieId">Details</a>
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-<script>
-    $(document).ready(function () {
-        $('#moviesTable').DataTable({
-            "pageLength": 5
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@item.ImagePath" class="card-img-top" alt="Movie Image" height="200px">
+                <div class="card-body">
+                    <h5 class="card-title">@item.MovieName</h5>
+                    <p class="card-text">@item.MovieDescription</p>
+                    <p class="card-text"><strong>Genre:</strong> @item.MovieGenre</p>
+                    <a href="@Url.Action("Details", new { id = item.MovieId })" class="btn btn-success">Details</a>
+                    <a href="@Url.Action("Update", new { id = item.MovieId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = item.MovieId })" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="pagination justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(pageNumber == i ? "active" : "")">
+                    <a class="page-link" href="?PageNumber=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#moviesTable').DataTable({
+                "pageLength": 5
+            });
         });
-    });
-</script>
+    </script>
+}
